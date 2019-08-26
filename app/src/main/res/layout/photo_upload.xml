@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_margin="16dp"
+        android:textColor="@color/spinner_bg"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/chooseBn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+
+        android:text="选择图片"/>
+
+    <Button
+        android:id="@+id/uploadBn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+
+        android:text="上传图片"/>
+    <Button
+        android:id="@+id/recoBn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        android:text="识别图片"/>
+
+
+
+</LinearLayout>
