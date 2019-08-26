@@ -82,7 +82,8 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 					@Override
 					public void run() {
 						Log.d("image path", imagePath);
-//						String string = doReco();
+						String string = doReco();
+						Log.d("servermsg",string);
 //						Toast.makeText(PhotoUploadActivity.this,string,Toast.LENGTH_SHORT);
 					}
 				}).start();
@@ -95,7 +96,8 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 		String result = "error";
 		GetExample getExample = new GetExample();
 		try {
-			result = getExample.run(Constant.BASE_URL+"/Recognition.do?image="+imagePath);
+//			result = getExample.run(Constant.BASE_URL+"/Recognition.do?image="+imagePath);
+			result = getExample.run(Constant.BASE_URL+"/Recognition.do");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

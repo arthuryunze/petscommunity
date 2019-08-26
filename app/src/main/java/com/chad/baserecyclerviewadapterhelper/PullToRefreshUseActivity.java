@@ -165,7 +165,6 @@ public class PullToRefreshUseActivity extends BaseActivity {
 		okhttp3.Request request = new okhttp3.Request.Builder()
 				.url(url)
 				.build();
-
 		try (Response response = client.newCall(request).execute()) {
 			return response.body().string();
 		}
