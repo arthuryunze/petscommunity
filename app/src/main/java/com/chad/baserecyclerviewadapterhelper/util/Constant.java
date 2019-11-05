@@ -13,7 +13,13 @@ public class Constant {
 	//TencentSTU server
 	public static final String BASE_URL = "http://148.70.41.175:8080/MyApp";
 
+	//kneron
 //	public static final String BASE_URL = "http://192.168.0.137:8080/MyApp";
 
+	//宿舍
 //	public static final String BASE_URL = "http://192.168.0.100:8080/MyApp";
+
+
+	public static String RECO_RESULT = "";
+
 }

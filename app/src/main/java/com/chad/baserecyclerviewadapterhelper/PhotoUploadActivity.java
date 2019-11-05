@@ -19,6 +19,7 @@ import com.chad.baserecyclerviewadapterhelper.util.UriToPath;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -36,6 +37,11 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 	private final int IMG_REQUEST = 1;
 	private Bitmap bitmap;
 	private final String TAG = "uploadIMG";
+	public ArrayList<String> filePaths;
+
+
+
+	private String imagePath = "";
 
 
 	@Override
@@ -48,18 +54,19 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 		RecoBn = findViewById(R.id.recoBn);
 		NAME = findViewById(R.id.name);
 		imgView = findViewById(R.id.imageView);
+
 		ChooseBn.setOnClickListener(this);
 		UploadBn.setOnClickListener(this);
 		RecoBn.setOnClickListener(this);
 	}
 
-
+//按钮事件
 	public void onClick(View view) {
 		switch (view.getId()) {
-			case R.id.chooseBn:
+			case R.id.chooseBn:     //选择按钮
 				selectImage();
 				break;
-			case R.id.uploadBn:
+			case R.id.uploadBn:     //上传按钮
 				if (imagePath.equals("")){
 					Toast.makeText(this,"请先选择图片",Toast.LENGTH_SHORT).show();
 					break;
@@ -71,19 +78,38 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 					}
 				}).start();
 				break;
-			case R.id.recoBn:
-				Log.d("image path", "hellohellohello");
+			case R.id.recoBn:   //识别按钮
+//				Log.d("image path", "hellohellohello");
 				if (imagePath.equals("")){
 					Log.d("image path", imagePath);
 					Toast.makeText(this,"请先选择图片",Toast.LENGTH_SHORT).show();
 					break;
 				}
+
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
+						doPost(imagePath);
+					}
+				}).start();
+
+
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						//不能在这里更新UI
 						Log.d("image path", imagePath);
-						String string = doReco();
+						final String string = doReco();
 						Log.d("servermsg",string);
+
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								// 更新UI的操作
+								Toast.makeText(PhotoUploadActivity.this,string,Toast.LENGTH_SHORT).show();
+							}
+						});
+
 //						Toast.makeText(PhotoUploadActivity.this,string,Toast.LENGTH_SHORT);
 					}
 				}).start();
@@ -92,19 +118,17 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 	}
 
 
-	private String doReco()  {
-		String result = "error";
-		GetExample getExample = new GetExample();
-		try {
-//			result = getExample.run(Constant.BASE_URL+"/Recognition.do?image="+imagePath);
-			result = getExample.run(Constant.BASE_URL+"/Recognition.do");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return result;
+//选择图片
+	public void selectImage() {
+
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		startActivityForResult(intent, IMG_REQUEST);
 	}
 
 
+//上传
 	private String doPost(String imagePath) {
 		OkHttpClient mOkHttpClient = new OkHttpClient();
 		String result = "error";
@@ -147,16 +171,30 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 	}
 
 
-	public void selectImage() {
+//识别
+	private String doReco()  {
+		String result = "error";
+		GetExample getExample = new GetExample();
+		try {
+//			result = getExample.run(Constant.BASE_URL+"/Recognition.do?image="+imagePath);
+			result = getExample.run(Constant.BASE_URL+"/Recognition.do");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Constant.RECO_RESULT = result;
 
-		Intent intent = new Intent();
-		intent.setType("image/*");
-		intent.setAction(Intent.ACTION_GET_CONTENT);
-		startActivityForResult(intent, IMG_REQUEST);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// 更新UI的操作
+				Toast.makeText(PhotoUploadActivity.this,Constant.RECO_RESULT,Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		return result;
 	}
 
 
-	private String imagePath = "";
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -164,7 +202,7 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
 			Uri path = data.getData();
 			imagePath = UriToPath.getPathFromUri(this,path);
 			try {
-//				Log.d("image path", imagePath);
+//				Log.d("image path", imagePath);0
 				bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
 				imgView.setImageBitmap(bitmap);
 				imgView.setVisibility(View.VISIBLE);

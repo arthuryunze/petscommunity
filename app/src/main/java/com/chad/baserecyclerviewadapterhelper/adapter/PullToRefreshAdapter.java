@@ -49,7 +49,6 @@ public class PullToRefreshAdapter extends BaseQuickAdapter<Status, BaseViewHolde
         ids = new ArrayList<String>();
         texts = new ArrayList<String>();
         urls = new ArrayList<String>();
-
         for (String string : strings) {
             ids.add(string.substring(0, string.indexOf("|")));
             texts.add(string.substring(string.indexOf("|") + 1, string
@@ -69,7 +68,6 @@ public class PullToRefreshAdapter extends BaseQuickAdapter<Status, BaseViewHolde
                 ((TextView) helper.getView(R.id.tweetText)).setText(SpannableStringUtils.getBuilder("this is the"+index+" label.").append("dog label").setClickSpan(clickableSpan).create());
             }
             index++;
-
         }
 
 
@@ -130,6 +128,4 @@ public class PullToRefreshAdapter extends BaseQuickAdapter<Status, BaseViewHolde
             ds.setUnderlineText(true);
         }
     };
-
-
 }

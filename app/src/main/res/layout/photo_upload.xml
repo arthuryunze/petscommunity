@@ -21,14 +21,15 @@
         android:id="@+id/chooseBn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:background="@color/design_default_color_primary"
-
         android:text="选择图片"/>
 
     <Button
         android:id="@+id/uploadBn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:background="@color/design_default_color_primary"
 
         android:text="上传图片"/>
@@ -36,6 +37,7 @@
         android:id="@+id/recoBn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:background="@color/design_default_color_primary"
         android:text="识别图片"/>
 
