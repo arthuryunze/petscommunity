@@ -41,6 +41,7 @@ public class BaseActivity extends AppCompatActivity {
      * sometime you want to define back event
      */
     protected void setBackBtn() {
+//        back.setVisibility(View.INVISIBLE);
         if (back != null) {
             back.setVisibility(View.VISIBLE);
             back.setOnClickListener(new View.OnClickListener() {

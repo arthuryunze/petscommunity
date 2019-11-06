@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="用户注册"
+        android:textSize="28dp"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        ></TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_default_height"
+        android:gravity="center_vertical">
+
+
+        <EditText
+            android:id="@+id/reg_username"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/default_general_margin"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableStart="@drawable/login_ic_login_username_default"
+            android:drawablePadding="@dimen/default_general_margin"
+            android:ellipsize="start"
+            android:hint="请输入您要注册的萌宠圈账号"
+            android:inputType="textVisiblePassword"
+            android:textColor="@color/gray_color"
+            android:textColorHint="@color/gray_color"
+            android:textSize="@dimen/default_medium_text_size"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/delete_username"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:paddingEnd="@dimen/default_general_margin"
+            android:paddingStart="@dimen/default_grow_margin"
+            android:src="@drawable/login_ic_edittext_clear"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/gray_color" />
+
+    <EditText
+        android:id="@+id/reg_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_default_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/default_small_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="@dimen/default_general_margin"
+        android:drawableStart="@drawable/login_ic_login_password_default"
+        android:hint="请输入您的密码"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textColor="@color/gray_color"
+        android:textColorHint="@color/gray_color"
+        android:textSize="@dimen/default_medium_text_size" />
+
+
+    <Button
+        android:id="@+id/regreg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注册"
+        android:layout_marginBottom="@dimen/default_general_margin"
+        android:layout_marginLeft="@dimen/default_general_margin"
+        android:layout_marginRight="@dimen/default_general_margin"
+        android:layout_marginTop="@dimen/default_long_margin"
+        android:textSize="@dimen/default_medium_text_size"
+        android:background="@drawable/login_corner_btn"
+        ></Button>
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="注册成功"-->
+<!--        ></TextView>-->
+
+</LinearLayout>

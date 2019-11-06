@@ -113,7 +113,6 @@ public class PullToRefreshUseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //上传按钮
         mButton = (FloatingActionButton) findViewById(R.id.floating_action_button);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +120,6 @@ public class PullToRefreshUseActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PullToRefreshUseActivity.this, PhotoUploadActivity.class);
                 startActivity(intent);
-
             }
         });
 

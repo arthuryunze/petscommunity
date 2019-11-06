@@ -10,14 +10,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.baserecyclerviewadapterhelper.util.CommonUtil;
+import com.chad.baserecyclerviewadapterhelper.util.Constant;
 
 
 public class LoginActivity extends Activity {
 
 	private Button btn_login;
+	private TextView btn_reg;
 	private EditText et_password;
 	private EditText et_username;
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +66,18 @@ public class LoginActivity extends Activity {
 			}
 		});
 
+//注册按钮
+		btn_reg = findViewById(R.id.btn_reg);
+		btn_reg.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(LoginActivity.this, RegActivity.class);
+				startActivity(intent);
+			}
+		});
+
+
+
 	}
 
 	private void login() {
@@ -78,16 +93,23 @@ public class LoginActivity extends Activity {
 		}
 
 		String res = null;
+		GetExample getExample = new GetExample();
 		try {
-//			res = run("http://148.70.41.175:8080/MyApp/Login.do?username=admin&password=admin");
-//			res = run("http://192.168.0.100:8080/MyApp/Login.do?username=admin&password=admin");
+			res = getExample.run(Constant.BASE_URL+"/Login.do?username="+et_username.getText()+"&password="+et_password.getText());
+//			Log.d("loginlog", res);
 
-			res = "success";
 			if (res.equals("success")){
 				startActivity(new Intent(LoginActivity.this, PullToRefreshUseActivity.class));
 				finish();
 			}else{
-				Toast.makeText(LoginActivity.this, "用户名或密码错误",Toast.LENGTH_SHORT).show();
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						// 更新UI的操作
+						Toast.makeText(LoginActivity.this, "用户名或密码错误,请重新输入",Toast.LENGTH_SHORT).show();
+						et_password.setText("");
+					}
+				});
 			}
 
 		}

@@ -55,6 +55,7 @@
         <activity android:name=".SectionMultipleItemUseActivity" />
         <activity android:name=".DiffUtilActivity" />
         <activity android:name=".PhotoUploadActivity"/>
+        <activity android:name=".RegActivity"/>
     </application>
 
 </manifest>
