@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -168,9 +169,21 @@ public class PullToRefreshUseActivity extends BaseActivity {
 		}
 	}
 
+
+
     private void initAdapter() {
+
+        //强制在主线程发送请求
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+
+
 		String res = "";
 	    try {
+
 		    res = run(Constant.BASE_URL+"/Showmessage.do");
 		    String[] ss = res.trim().split("<br />");
 		    List<String> strings = new ArrayList<String>();
