@@ -3,6 +3,7 @@ package com.chad.baserecyclerviewadapterhelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,10 +30,12 @@ public class RegActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
 
-//        if (android.os.Build.VERSION.SDK_INT > 9) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//        }
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+
         reg = findViewById(R.id.regreg);
         reg_username = findViewById(R.id.reg_username);
         reg_password = findViewById(R.id.reg_password);

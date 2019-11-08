@@ -84,11 +84,26 @@ public class LoginActivity extends Activity {
 		String name = et_username.getText().toString();
 		String password = et_password.getText().toString();
 		if (TextUtils.isEmpty(name)) {
-			Toast.makeText(LoginActivity.this, "用户名不能为空",Toast.LENGTH_SHORT).show();
+		//在子线程更新UI
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					// 更新UI的操作
+					Toast.makeText(LoginActivity.this,"username can't be null!",Toast.LENGTH_SHORT).show();
+
+				}
+			});
 			return;
 		}
 		if (TextUtils.isEmpty(password)) {
-			Toast.makeText(LoginActivity.this, "密码不能为空",Toast.LENGTH_SHORT).show();
+			//在子线程更新UI
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					// 更新UI的操作
+					Toast.makeText(LoginActivity.this, "密码不能为空",Toast.LENGTH_SHORT).show();
+				}
+			});
 			return;
 		}
 

@@ -133,6 +133,7 @@ public class PullToRefreshUseActivity extends BaseActivity {
 
         initAdapter();
 
+
 //        addHeadView();
         initRefreshLayout();
         mSwipeRefreshLayout.setRefreshing(true);
@@ -178,8 +179,6 @@ public class PullToRefreshUseActivity extends BaseActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
-
 
 		String res = "";
 	    try {
